@@ -4,7 +4,7 @@ require 'nike_v2'
 
 Gem::Specification.new do |s|
   s.name        = 'nike_v2'
-  s.version     = NikeApi::VERSION
+  s.version     = NikeV2::VERSION
   s.authors     = ['Eric Harrison']
   s.email       = ['eharrison@smashtankapps.com']
   s.homepage    = 'https://github.com/fuelxc/nike_v2'
