@@ -1,4 +1,4 @@
-NikeApi
+NikeV2
 ====================
 
 ![Build Status](https://travis-ci.org/fuelxc/nike_v2.png)
