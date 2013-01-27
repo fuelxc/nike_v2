@@ -5,8 +5,8 @@ require 'nike_v2'
 Gem::Specification.new do |s|
   s.name        = 'nike_v2'
   s.version     = NikeV2::VERSION
-  s.authors     = ['Eric Harrison']
-  s.email       = ['eharrison@smashtankapps.com']
+  s.authors     = ["Eric Harrison"]
+  s.email       = ["eric@rubynooby.com"]
   s.homepage    = 'https://github.com/fuelxc/nike_v2'
   s.summary     = 'Nike+ API V2 Gem'
   s.description = 'Nike+ API V2 Gem'
