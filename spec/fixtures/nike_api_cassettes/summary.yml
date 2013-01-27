@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.nike.com/me/sport?access_token=foobar
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Appid:
+      - nike
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 20 Jan 2013 04:21:04 GMT
+      Server:
+      - Apache
+      X-Swooshlet:
+      - app-msp-api-0 prd sin-82-app-msp-api-0
+      Content-Length:
+      - '340'
+      Connection:
+      - keep-alive
+    body:
+      encoding: US-ASCII
+      string: ! '{"experienceTypes":["FUELBAND"],"summaries":[{"experienceType":"ALL","records":{"lifetimeFuel":142358}},{"experienceType":"FUELBAND","records":{"dailyGoalTargetValue":4000.0,"currentStreak":0,"totalDailyGoalsAchieved":16,"lifetimeAverageFuelDay":3552,"lifetimeAverageFuelWeek":26149,"lifetimeAverageFuelMonth":75138,"numOfActivities":41}}]}'
+    http_version: 
+  recorded_at: Sun, 20 Jan 2013 04:21:05 GMT
+recorded_with: VCR 2.4.0

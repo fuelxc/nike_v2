@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.nike.com/me/sport/activities?access_token=foobar
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Appid:
+      - nike
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 20 Jan 2013 04:21:04 GMT
+      Server:
+      - Apache
+      X-Swooshlet:
+      - app-msp-api-0 prd sin-82-app-msp-api-0
+      Content-Length:
+      - '340'
+      Connection:
+      - keep-alive
+    body:
+      encoding: US-ASCII
+      string: ! '{"data":[{"activityId":"91b501dc-4a38-44aa-b537-6095418713d8","calories":2475,"fuel":7500,"distance":19.665315,"steps":24975,"duration":"0:01:00.0000","activityType":"ALL_DAY","startTime":"2012-02-26T08:00:00Z","activityTimeZone":"America/Los_Angeles","status":"COMPLETE","deviceType":"FUELBAND","tags":[],"streams":[]},{"activityId":"8554c3bb-f985-4700-a52d-6235475a10f0","calories":1848,"fuel":5555,"distance":14.6834352,"steps":18648,"duration":"0:01:00.0000","activityType":"ALL_DAY","startTime":"2012-02-25T08:00:00Z","activityTimeZone":"America/Los_Angeles","status":"COMPLETE","deviceType":"FUELBAND","tags":[],"streams":[]},{"activityId":"b7511567-9414-429a-9b7b-40ebc15af985","calories":396,"fuel":1200,"distance":3.1464504,"steps":3996,"duration":"0:01:00.0000","activityType":"ALL_DAY","startTime":"2012-02-24T08:00:00Z","activityTimeZone":"America/Los_Angeles","status":"COMPLETE","deviceType":"FUELBAND","tags":[],"streams":[]},{"activityId":"b87bb409-a618-47ee-a75e-1bb5f8daf9a6","calories":300,"fuel":900,"distance":2.3621999999999996,"steps":3000,"duration":"0:01:00.0000","activityType":"ALL_DAY","startTime":"2012-02-23T08:00:00Z","activityTimeZone":"America/Los_Angeles","status":"COMPLETE","deviceType":"FUELBAND","tags":[],"streams":[]},{"activityId":"6c6eb89c-fa42-49a6-8b04-2596297a7c3a","calories":200,"fuel":600,"distance":1.5748,"steps":2000,"duration":"0:01:00.0000","activityType":"ALL_DAY","startTime":"2012-02-22T08:00:00Z","activityTimeZone":"America/Los_Angeles","status":"COMPLETE","deviceType":"FUELBAND","tags":[],"streams":[]}],"paging":{"next":"/me/sport/activities?access_token=68d1b7f5ec3e6a1ad3b349cd73983b34&amp;offset=6&amp;count=5","previous":null}}'
+    http_version: 
+  recorded_at: Sun, 20 Jan 2013 04:21:05 GMT
+recorded_with: VCR 2.4.0

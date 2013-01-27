@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.nike.com/me/sport/activities/91b501dc-4a38-44aa-b537-6095418713d8/gps?access_token=foobar
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Appid:
+      - nike
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 20 Jan 2013 04:21:04 GMT
+      Server:
+      - Apache
+      X-Swooshlet:
+      - app-msp-api-0 prd sin-82-app-msp-api-0
+      Content-Length:
+      - '340'
+      Connection:
+      - keep-alive
+    body:
+      encoding: US-ASCII
+      string: ! '{ "elevationLoss": 54.089367, "elevationGain": 57.98948, "elevationMin": 52.071926, "elevationMax": 71.568146, "intervalMetric": 10, "intervalUnit": "SEC", "wayPoints": [ { "latitude": 45.508057, "longitude": -122.83315, "elevation": 53.09316 }, { "latitude": 45.508034, "longitude": -122.83313, "elevation": 53.151 }, { "latitude": 45.50786, "longitude": -122.832954, "elevation": 53.86401 }, { "latitude": 45.508175, "longitude": -122.833206, "elevation": 56.81296 }, { "latitude": 45.508156, "longitude": -122.83318, "elevation": 56.870304 }, { "latitude": 45.508133, "longitude": -122.83316, "elevation": 56.99327 } ] }'
+      http_version: 
+  recorded_at: Sun, 20 Jan 2013 04:21:05 GMT
+recorded_with: VCR 2.4.0
