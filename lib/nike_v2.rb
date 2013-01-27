@@ -9,6 +9,6 @@ require 'nike_v2/activity'
 require 'nike_v2/summary'
 require 'nike_v2/gps_data'
 
-module NikeApi
-  VERSION = '1.0.0'
+module NikeV2
+  VERSION = '0.1.0'
 end
