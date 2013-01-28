@@ -10,6 +10,9 @@ Learn more about the Nike+ API at [https://developer.nike.com/](https://develope
 gem install nike_v2
 ```
 
+### Comming Soon
+Once Nike releases the OAuth api this gem will include the ability to fetch the access token too
+
 ## Examples
 
 In order to utilize the Nike+ API in its current state, you'll need to do the following:
