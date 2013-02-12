@@ -9,8 +9,8 @@ describe NikeV2::Summary do
 
     it 'should return a Summary of user data' do
       person.summary.should be_kind_of(NikeV2::Summary)
-      person.summary.experience_types.include?('FUELBAND').should be_true
-      person.summary.summaries.length.should == 2
+      person.summary.activity_types.collect(&:to_s).include?('Fuel Band').should be_true
+      person.summary.fuelband.should_not be_nil
     end
   end
 end

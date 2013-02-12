@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_runtime_dependency 'httparty', '>= 0.10.0'
+  s.add_runtime_dependency 'alchemist', '>= 0.1.3'
 
   s.add_development_dependency 'factory_girl', '~> 4.2.0'
   s.add_development_dependency 'rake', '~> 10.0.3'

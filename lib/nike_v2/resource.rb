@@ -8,21 +8,29 @@ module NikeV2
       super(attributes)
     end
 
-    def fetch_data
-      get(api_url).parsed_response
+    def fetch_data(*args)
+      args << api_url if args.empty?
+      get(*args).parsed_response
     end
 
     def get(*args, &block)
-      unless has_options?(args)
-        query = { 'access_token' => access_token }
-        headers = { 'Accept' => 'application/json', 'appid' => app_id }
-        options = { query: query, headers: headers }
-        args << options
-      end
+      build_options(args)
       self.class.get(*args, &block)
     end
 
     private
+
+    def build_options(args)
+      query = { 'access_token' => access_token }
+      headers = { 'Accept' => 'application/json', 'appid' => app_id }
+      options = { query: query, headers: headers }
+      if has_options?(args)
+        args[-1] = options.merge(args.last)
+      else 
+        args << options
+      end
+    end
+
 
     def app_id
       #TODO: make this a config yaml
@@ -30,7 +38,7 @@ module NikeV2
     end
 
     def has_options?(args)
-      args.last.class.is_a?(Hash) && args.last.keys.any?{ |key| %w[basic_auth body headers no_follow query].include?(key) }
+      args.last.is_a?(Hash)
     end
 
     def api_url

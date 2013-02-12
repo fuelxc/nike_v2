@@ -15,9 +15,20 @@ module NikeV2
       @gps_data ||= NikeV2::GpsData.new(:activity => self)
     end
 
+    def metrics
+      @metrics
+    end
+
     def load_data
-      set_attributes(fetch_data)
+      data = fetch_data
+      @metrics = NikeV2::Metrics.new(self, data.delete('metrics'))
+
+      set_attributes(data)
       true
+    end
+
+    def started_at
+      @started_at ||= Time.parse(self.start_time)
     end
 
     private 
