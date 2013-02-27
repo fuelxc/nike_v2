@@ -4,7 +4,7 @@ describe NikeV2::Activity do
   let(:activity){ build(:activity) }
   
   describe 'fetch_data' do
-    before{ VCR.insert_cassette 'activity', record: :new_episodes }
+    before{ VCR.insert_cassette 'activity', record: :new_episodes, :allow_playback_repeats => true }
     after{ VCR.eject_cassette }
 
     it 'should load the activity from the api' do

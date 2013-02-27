@@ -9,7 +9,7 @@ module NikeV2
     end
 
     def fetch_data(*args)
-      args << api_url if args.empty?
+      args.unshift(api_url)
       get(*args).parsed_response
     end
 
@@ -21,14 +21,13 @@ module NikeV2
     private
 
     def build_options(args)
-      query = { 'access_token' => access_token }
+      query = has_options?(args) ? args.pop : {}
+
+      query.merge!('access_token' => access_token)
       headers = { 'Accept' => 'application/json', 'appid' => app_id }
       options = { query: query, headers: headers }
-      if has_options?(args)
-        args[-1] = options.merge(args.last)
-      else 
-        args << options
-      end
+
+      args << options
     end
 
 

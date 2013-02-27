@@ -4,6 +4,8 @@ module NikeV2
     include Enumerable
     extend Forwardable
 
+    API_ARGS = [:offset, :count, :start_date, :end_date]
+
     def_delegators :@activities_array, :[]=, :<<, :[], :count, :length, :each, :first, :last
     def_delegator :@person, :access_token
     
@@ -11,11 +13,12 @@ module NikeV2
 
     def initialize(attributes = {})
       raise "#{self.class} requires a person." unless attributes.keys.include?(:person)
+      api_args = extract_api_args(attributes)
       set_attributes(attributes)
       @activities_array = []
 
       #TODO: make it pass blocks
-      activities = fetch_data
+      activities = fetch_data(api_args)
       build_activities(activities.delete('data'))
 
       super(activities)
@@ -33,9 +36,15 @@ module NikeV2
 
     private
     def build_activities(data)
-      data.each do |activity|
-        self << NikeV2::Activity.new({:person => self}.merge(activity))
+      if data
+        data.each do |activity|
+          self << NikeV2::Activity.new({:person => self}.merge(activity))
+        end
       end
+    end
+
+    def extract_api_args(args)
+      args.inject({}){|h,a| h[a.first.camelize] = a.last if API_ARGS.include?(a.first); h}
     end
   end
 end

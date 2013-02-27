@@ -7,11 +7,11 @@ module NikeV2
     end
 
     def summary
-      @summary ||= NikeV2::Summary.new(:person => self)
+      NikeV2::Summary.new(:person => self)
     end
 
-    def activities
-      @activities ||= NikeV2::Activities.new(:person => self)
+    def activities(args = {})
+      NikeV2::Activities.new(args.merge(:person => self))
     end
 
   end
