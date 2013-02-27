@@ -16,10 +16,7 @@ module NikeV2
 
       #TODO: make it pass blocks
 
-      # Added by: Parth Barot, 27 Feb,2013.
-      # Passing query on the initial API call, to pass 'count' and load records specified by user.
-      #
-      activities = fetch_data(API_URL,{query: {:access_token => access_token, count: self.count}})
+      activities = fetch_data
       if activities.present? && activities['data'].present?
         build_activities(activities.delete('data'))
         super(activities)
