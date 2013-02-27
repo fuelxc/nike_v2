@@ -4,13 +4,24 @@ module NikeV2
 
     base_uri 'https://api.nike.com'
 
+    RESP_MSG_INVALID_TOKEN = 'invalid_token'
+
     def initialize(attributes={})
       super(attributes)
     end
 
     def fetch_data(*args)
       args.unshift(api_url)
-      get(*args).parsed_response
+      resp = get(*args).parsed_response
+
+      # Added by: Parth Barot, 27 Feb,2013.
+      #
+      # Raise an exception if token is expired and error message is matching. 
+      # We could also throw general error message if error is present, for other errors.
+      if !resp['error'].nil? && resp['error'] == RESP_MSG_INVALID_TOKEN
+        raise "#{self.class} invalid or expired token, can not fetch data from server."   
+      end
+      resp
     end
 
     def get(*args, &block)
