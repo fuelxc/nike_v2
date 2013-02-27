@@ -10,8 +10,10 @@ module NikeV2
       @summary ||= NikeV2::Summary.new(:person => self)
     end
 
-    def activities
-      @activities ||= NikeV2::Activities.new(:person => self)
+    def activities(count=5)
+      # Added by: Parth Barot, 27 Feb,2013.
+      # Passing 'count' to load records specified by user.
+      @activities ||= NikeV2::Activities.new(:person => self, :count => count)
     end
 
   end

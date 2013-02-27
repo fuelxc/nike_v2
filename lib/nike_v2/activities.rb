@@ -15,10 +15,15 @@ module NikeV2
       @activities_array = []
 
       #TODO: make it pass blocks
-      activities = fetch_data
-      build_activities(activities.delete('data'))
 
-      super(activities)
+      # Added by: Parth Barot, 27 Feb,2013.
+      # Passing query on the initial API call, to pass 'count' and load records specified by user.
+      #
+      activities = fetch_data(API_URL,{query: {:access_token => access_token, count: self.count}})
+      if activities.present? && activities['data'].present?
+        build_activities(activities.delete('data'))
+        super(activities)
+      end
     end
 
     def fetch_more
@@ -27,7 +32,12 @@ module NikeV2
         query = query.split(/&/).inject({}){|h,item| k, v = item.split(/\=/); h[k] = v;h}
         activities = fetch_data(url, {query: query})
         build_activities(activities.delete('data'))
-        self.paging = activities.delete['paging']
+        
+        # 1. Changing [] with () for syntax error in '.delete' method call
+        
+        # 2. Changing "self.paging=" to "@paging", because no accessor method present. 
+        # Instead, We can also change this in resource.rb, to define new setter method for each attribute.
+        @paging = activities.delete('paging') 
       end
     end
 
