@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path('../lib', __FILE__)
-require 'nike_v2/version'
+require 'nike_v2'
 
 Gem::Specification.new do |s|
   s.name        = 'nike_v2'

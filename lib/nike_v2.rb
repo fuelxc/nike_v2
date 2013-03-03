@@ -12,3 +12,7 @@ require 'nike_v2/summary'
 require 'nike_v2/gps_data'
 require 'nike_v2/metrics'
 require 'nike_v2/metric'
+
+module NikeV2
+  VERSION = '0.2.0'
+end
