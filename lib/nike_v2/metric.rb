@@ -21,7 +21,7 @@ module NikeV2
     end
 
     def total_during(start, stop)
-      during(start, stop).collect(&:to_i).inject(:+) rescue 0
+      during(start, stop).collect(&:to_f).inject(:+) rescue 0
     end
 
     def during(start, stop)

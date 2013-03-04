@@ -6,8 +6,9 @@ module NikeV2
 
     Metrics::METRIC_TYPES.each do |type|
       self.class_eval do 
-        def_delegator :@metrics, "total_#{type.downcase}"
-        def_delegator :@metrics, "total_#{type.downcase}_during"
+        def_delegator :metrics, "total_#{type.downcase}"
+        def_delegator :metrics, type.downcase
+        def_delegator :metrics, "total_#{type.downcase}_during"
       end
     end
 
