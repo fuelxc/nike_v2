@@ -35,6 +35,20 @@ activity.fetch_data
 activity.gps_data
 ```
 
+The activities api allows you to directly pass arguements to the Nike+ api.  It also allows you to prefetch the metrics for each activity returned
+``` ruby
+#fetch 99 activities
+person.activities(:count => 99)
+#prefetch the metrics for activities
+person.activities(:build_metrics => true)
+```
+
+We also smart load the metrics for activities now so you don't have to explicity load them
+``` ruby
+person.activities.total_fuel #fetches the metrics if they aren't already loaded
+ => 394
+```
+
 ## Making it Better
  
 * Fork the project.
