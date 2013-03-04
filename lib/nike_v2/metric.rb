@@ -5,7 +5,7 @@ module NikeV2
       @activity = activity
       @unit = data['intervalUnit']
       @type = data ['metricType']
-      @values = data['values']
+      @values = data['values'].collect(&:to_f)
     end
 
     def type
@@ -21,7 +21,7 @@ module NikeV2
     end
 
     def total_during(start, stop)
-      during(start, stop).collect(&:to_i).inject(:+)
+      during(start, stop).collect(&:to_i).inject(:+) rescue 0
     end
 
     def during(start, stop)
@@ -31,7 +31,7 @@ module NikeV2
     private
     def time_to_index(time)
       difference = time.to_i - @activity.started_at.to_i
-      difference.seconds.to.send(@unit.downcase).to_s.to_i
+      difference.s.to.send(@unit.downcase).to_s.to_i
     end
   end
 end

@@ -14,10 +14,6 @@ module NikeV2
       args.unshift(api_url)
       resp = get(*args).parsed_response
 
-      # Added by: Parth Barot, 27 Feb,2013.
-      #
-      # Raise an exception if token is expired and error message is matching. 
-      # We could also throw general error message if error is present, for other errors.
       if !resp['error'].nil? && resp['error'] == RESP_MSG_INVALID_TOKEN
         raise "#{self.class} invalid or expired token, can not fetch data from server."   
       end

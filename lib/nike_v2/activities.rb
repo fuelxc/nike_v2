@@ -6,16 +6,18 @@ module NikeV2
 
     API_ARGS = [:offset, :count, :start_date, :end_date]
 
-    def_delegators :@activities_array, :[]=, :<<, :[], :count, :length, :each, :first, :last
+    def_delegators :@activities_array, :[]=, :<<, :[], :count, :length, :each, :first, :last, :collect
     def_delegator :@person, :access_token
     
     API_URL = '/me/sport/activities'
 
     def initialize(attributes = {})
       raise "#{self.class} requires a person." unless attributes.keys.include?(:person)
+      @build_metrics = attributes.delete(:build_metrics) || false
       api_args = extract_api_args(attributes)
       set_attributes(attributes)
       @activities_array = []
+
 
       #TODO: make it pass blocks
       activities = fetch_data(api_args)
@@ -31,43 +33,39 @@ module NikeV2
       end
     end
 
-    # Added by: Parth Barot, 27 Feb,2013.
-    # Issue 7
-    #
     def fetch_all
       until self.paging['next'].blank? do
         fetch_and_build_activities 
       end
     end
 
-    #######################
-    private
-    #######################
+    def fuelpoints_during(start_time, end_time)
+      #reject activities that are not on the right date
+    end
 
+    private
     def build_activities(data)
       if data
         data.each do |activity|
           self << NikeV2::Activity.new({:person => self}.merge(activity))
         end
       end
+      if @build_metrics
+        self.collect(&:load_data)
+      end
+
     end
 
     def extract_api_args(args)
       args.inject({}){|h,a| h[a.first.camelize] = a.last if API_ARGS.include?(a.first); h}
     end
-    # Refactored by: Parth Barot, 27 Feb,2013.
-    # Needs to be extracted as a private method, to avoid code duplication for new method 'fetch_all'
-    #
+
     def fetch_and_build_activities
       url, query = self.paging['next'].match(/^(.*?)\?(.*)$/)[1,2]
       query = query.split(/&/).inject({}){|h,item| k, v = item.split(/\=/); h[k] = v;h}
       activities = fetch_data(url, {query: query})
       build_activities(activities.delete('data'))
-      
-      # 1. Changing [] with () for syntax error in '.delete' method call
-      
-      # 2. Changing "self.paging=" to "@paging", because no accessor method present. 
-      # Instead, We can also change this in resource.rb, to define new setter method for each attribute.
+
       @paging = activities.delete('paging')
     end
   end

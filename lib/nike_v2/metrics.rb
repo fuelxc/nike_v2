@@ -6,22 +6,20 @@ module NikeV2
 
     def_delegators :@metrics_array, :[]=, :<<, :[], :count, :length, :each, :first, :last
 
+    METRIC_TYPES = %w(FUEL CALORIES DISTANCE STEPS)
+
     def initialize(activity, data_set)
       @activity = activity
       @metrics_array = []
       build_metrics(data_set)
     end
 
-    def fuel_points
-      @fuel_points ||= sum_of_type('FUELPOINTS')
-    end
+    METRIC_TYPES.each do |type|
+      method_var_name = 'total_' + type.downcase
+      instance_variable_set('@' + method_var_name, 0.00)
+      define_method(method_var_name){ ivar = instance_variable_get('@' + method_var_name); ivar ||= sum_of_type(type)}
 
-    def calories
-      @fuel_points ||= sum_of_type('CALORIES')
-    end
-
-    def distance
-      @fuel_points ||= sum_of_type('DISTANCE')
+      define_method(method_var_name + '_during'){|*args| sum_of_type_during(type, *args)}
     end
 
     private
@@ -33,6 +31,10 @@ module NikeV2
 
     def sum_of_type(type)
       @metrics_array.select{|m| m.type == type}.collect(&:total).inject(:+) || 0.00
+    end
+
+    def sum_of_type_during(type, *args)
+      @metrics_array.select{|m| m.type == type}.collect{|m| m.total_during(*args)}.inject(:+) || 0.00
     end
   end
 end

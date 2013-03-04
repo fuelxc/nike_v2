@@ -1,13 +1,22 @@
+require 'nike_v2/metrics'
 module NikeV2
   class Activity < Resource
     extend Forwardable
     def_delegator :@person, :access_token
+
+    Metrics::METRIC_TYPES.each do |type|
+      self.class_eval do 
+        def_delegator :@metrics, "total_#{type.downcase}"
+        def_delegator :@metrics, "total_#{type.downcase}_during"
+      end
+    end
 
     API_URL = '/me/sport/activities'
 
     def initialize(attributes = {})
       raise "#{self.class} requires s person." unless attributes.keys.include?(:person)
       raise "#{self.class} requires an activityId." unless attributes.keys.include?('activityId')
+
       super(attributes)
     end
 
@@ -16,6 +25,7 @@ module NikeV2
     end
 
     def metrics
+      load_data unless @metrics
       @metrics
     end
 
