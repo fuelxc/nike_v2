@@ -16,7 +16,7 @@ describe NikeV2::Metrics do
     end
 
     it 'should sum the metrics of a given type' do
-      activity.metrics.distance.should == 6.5058
+      activity.metrics.total_distance.should == 6.5058
     end
   end
 end
