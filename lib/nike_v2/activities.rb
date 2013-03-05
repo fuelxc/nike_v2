@@ -57,7 +57,15 @@ module NikeV2
     end
 
     def extract_api_args(args)
-      args.inject({}){|h,a| h[a.first.camelize] = a.last if API_ARGS.include?(a.first); h}
+      args.inject({}){|h,a| h[camelize_word(a.first)] = a.last if API_ARGS.include?(a.first); h}
+    end
+
+    def camelize_word(word, first_letter_in_uppercase = false)
+      if !!first_letter_in_uppercase
+        word.to_s.gsub(/\/(.?)/) { "::#{$1.upcase}" }.gsub(/(?:^|_)(.)/) { $1.upcase }
+      else
+        (word[0].to_s.downcase + camelize_word(word, true)[1..-1]).to_sym
+      end
     end
 
     def fetch_and_build_activities
