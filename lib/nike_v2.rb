@@ -1,5 +1,3 @@
-require 'nike_v2/version'
-
 require 'httparty'
 require 'forwardable'
 require 'alchemist'
@@ -15,3 +13,4 @@ require 'nike_v2/activity'
 require 'nike_v2/activities'
 require 'nike_v2/summary'
 require 'nike_v2/gps_data'
+require 'nike_v2/version'
