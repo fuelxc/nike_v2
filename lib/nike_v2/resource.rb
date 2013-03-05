@@ -1,3 +1,4 @@
+require 'httparty'
 module NikeV2
   class Resource < Base
     include HTTParty
