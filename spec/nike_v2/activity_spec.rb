@@ -17,7 +17,8 @@ describe NikeV2::Activity do
     end
 
     it 'should sum the metrics during a time period' do
-      activity.total_fuel_during(Time.parse('2011-08-11T00:00:00'), Time.parse('2011-08-11T01:00:00')).should == 934.0
+      activity.load_data.should be_true
+      activity.total_fuel_during(Time.parse('2011-08-11T00:00:00 '+ activity.activity_time_zone), Time.parse('2011-08-11T01:00:00 ' + activity.activity_time_zone)).should == 934.0
     end
   end
 end
