@@ -71,7 +71,7 @@ module NikeV2
     def fetch_and_build_activities
       url, query = self.paging['next'].match(/^(.*?)\?(.*)$/)[1,2]
       query = query.split(/&/).inject({}){|h,item| k, v = item.split(/\=/); h[k] = v;h}
-      activities = fetch_data(url, {query: query})
+      activities = fetch_data(query)
       build_activities(activities.delete('data'))
 
       @paging = activities.delete('paging')
