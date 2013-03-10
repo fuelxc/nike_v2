@@ -18,6 +18,7 @@ module NikeV2
       raise "#{self.class} requires s person." unless attributes.keys.include?(:person)
       raise "#{self.class} requires an activityId." unless attributes.keys.include?('activityId')
 
+      build_metrics(attributes)
       super(attributes)
     end
 
@@ -26,15 +27,15 @@ module NikeV2
     end
 
     def metrics
-      load_data unless @metrics
+      load_data unless @metrics.is_a?(NikeV2::Metrics)
       @metrics
     end
 
     def load_data
       data = fetch_data
-      @metrics = NikeV2::Metrics.new(self, data.delete('metrics'))
+      build_metrics(data)
+      set_attributes(data)   
 
-      set_attributes(data)
       true
     end
 
@@ -42,9 +43,18 @@ module NikeV2
       @started_at ||= Time.parse(self.start_time.gsub(/Z$/,'') + " #{self.activity_time_zone}")
     end
 
+    def ended_at
+      @started_at ||= Time.parse(self.end_time.gsub(/Z$/,'') + " #{self.activity_time_zone}")
+    end
+
     private 
     def api_url
       API_URL + "/#{self.activity_id}"
+    end
+
+    def build_metrics(data)
+      metrics = data.delete('metrics') || []
+      @metrics = metrics.empty? ? nil : NikeV2::Metrics.new(self, metrics)
     end
   end
 end

@@ -12,6 +12,7 @@ module NikeV2
       @activity = activity
       @metrics_array = []
       build_metrics(data_set)
+      self
     end
 
     METRIC_TYPES.each do |type|

@@ -11,6 +11,20 @@ module NikeV2
     
     API_URL = '/me/sport/activities'
 
+    Metrics::METRIC_TYPES.each do |type|
+      self.class_eval do 
+
+        method_var_name = 'total_' + type.downcase
+        instance_variable_set('@' + method_var_name, 0.00)
+        define_method(method_var_name){ ivar = instance_variable_get('@' + method_var_name); ivar ||= sum_of(method_var_name)}
+
+
+        define_method("total_#{type.downcase}_during") do |start_date, end_date|
+          @activities_array.reject{|a| ((a.started_at..a.ended_at) & (start_date..end_date)).nil?}.collect{|a| a.send("total_#{type.downcase}_during", start_date, end_date)}.inject(:+)
+        end
+      end
+    end
+
     def initialize(attributes = {})
       raise "#{self.class} requires a person." unless attributes.keys.include?(:person)
       @build_metrics = attributes.delete(:build_metrics) || false
@@ -39,11 +53,13 @@ module NikeV2
       end
     end
 
-    def fuelpoints_during(start_time, end_time)
-      #reject activities that are not on the right date
+    private
+
+
+    def sum_of(method_var_name)
+      self.collect(&:"#{method_var_name}").inject(:+) || 0.00
     end
 
-    private
     def build_activities(data)
       if data
         data.each do |activity|

@@ -5,7 +5,7 @@ describe NikeV2::Metrics do
   
   describe 'fetch_data' do
     before do
-      VCR.insert_cassette 'activity', record: :new_episodes
+      VCR.insert_cassette 'activity', record: :new_episodes, :allow_playback_repeats => true
       activity.load_data
     end
     

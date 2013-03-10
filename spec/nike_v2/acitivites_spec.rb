@@ -20,9 +20,14 @@ describe NikeV2::Activities do
     end
 
     it 'should accept the start_date parameter, camelcase it and return an array of Nike::Activity' do
-      person.activities(:count => 1).should be_kind_of(NikeV2::Activities)
-      person.activities(:count => 1).first.should be_kind_of(NikeV2::Activity)
-      person.activities(:count => 1).length.should == 1
+      pending
+      # person.activities(:count => 1).should be_kind_of(NikeV2::Activities)
+      # person.activities(:count => 1).first.should be_kind_of(NikeV2::Activity)
+      # person.activities(:count => 1).length.should == 1
+    end
+
+    it 'should calculate all the fuels' do
+      person.activities(:count => 1).total_fuel.should == 20491.0
     end
   end
 end

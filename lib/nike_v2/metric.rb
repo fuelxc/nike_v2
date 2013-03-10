@@ -6,6 +6,7 @@ module NikeV2
       @unit = data['intervalUnit']
       @type = data ['metricType']
       @values = data['values'].collect(&:to_f)
+      self
     end
 
     def type
