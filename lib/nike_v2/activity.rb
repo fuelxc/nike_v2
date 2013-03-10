@@ -39,7 +39,7 @@ module NikeV2
     end
 
     def started_at
-      @started_at ||= Time.parse(self.start_time)
+      @started_at ||= Time.parse(self.start_time + " #{self.activity_time_zone}")
     end
 
     private 
