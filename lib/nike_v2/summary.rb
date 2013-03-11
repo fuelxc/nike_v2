@@ -13,17 +13,20 @@ module NikeV2
 
     private
     def initialize_data
-      fuel_data = fetch_data
+      summary_data = fetch_data
       initialization_data = {}
-      if fuel_data
-        if fuel_data.has_key?('experienceTypes')
+      if summary_data
+        if summary_data.has_key?('experienceTypes')
           initialization_data = {
-            'activity_types' => fuel_data['experienceTypes'].collect{|a| ExperienceType.new(a)}
+            'activity_types' => summary_data['experienceTypes'].collect{|a| ExperienceType.new(a)}
           }
         end
-        if fuel_data.has_key?('summaries')
-          fuel_data['summaries'].each do |data|
-            initialization_data[data['experienceType'].downcase] = data['records']
+        if summary_data.has_key?('summaries')
+          summary_data['summaries'].each do |data|
+            initialization_data[data['experienceType'].downcase] = {}
+            data['records'].each do |record|
+              initialization_data[data['experienceType'].downcase][record['recordType']] = record['recordValue']
+            end
           end
         end
       end

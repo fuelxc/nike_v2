@@ -6,6 +6,8 @@ module NikeV2
       'running' => 'Running'
     }
 
+    TO_KEY_MAP = TO_S_MAP.invert
+
     def initialize(code)
       @code = code
     end
@@ -16,6 +18,10 @@ module NikeV2
 
     def to_s
       TO_S_MAP[code.downcase]
+    end
+
+    def self.code_from_string(string)
+      TO_KEY_MAP[string]
     end
   end
 end
