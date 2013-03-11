@@ -1,11 +1,17 @@
 require 'httparty'
+require 'httparty_sober'
 module NikeV2
   class Resource < Base
     include HTTParty
+    include HTTParty::Sober
 
     base_uri 'https://api.nike.com'
 
     RESP_MSG_INVALID_TOKEN = 'invalid_token'
+
+    if NikeV2.configuration.cache
+      cache NikeV2.configuration.cache
+    end
 
     def initialize(attributes={})
       super(attributes)
@@ -23,7 +29,7 @@ module NikeV2
 
     def get(*args, &block)
       build_options(args)
-      self.class.get(*args, &block)
+      self.class.send(get_method, *args, &block)
     end
 
     private
@@ -50,6 +56,14 @@ module NikeV2
 
     def api_url
       self.class.const_get('API_URL')
+    end
+
+    def get_method
+      if NikeV2.configuration.cache
+        'get_with_caching'
+      else
+        'get'
+      end
     end
   end
 end

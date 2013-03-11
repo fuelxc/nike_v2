@@ -2,6 +2,24 @@ require 'alchemist'
 require 'forwardable'
 require 'ext/core_ext'
 
+module NikeV2
+  def self.configuration
+    @configuration ||=  Configuration.new
+  end
+
+  def self.configure
+    yield(configuration) if block_given?
+  end
+
+  class Configuration
+    attr_accessor :cache
+
+    def initialize
+      @cache = false
+    end
+  end
+end
+
 require 'nike_v2/base'
 require 'nike_v2/metric'
 require 'nike_v2/metrics'
