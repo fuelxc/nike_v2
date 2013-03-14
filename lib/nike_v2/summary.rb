@@ -25,7 +25,11 @@ module NikeV2
           summary_data['summaries'].each do |data|
             initialization_data[data['experienceType'].downcase] = {}
             data['records'].each do |record|
-              initialization_data[data['experienceType'].downcase][record['recordType']] = record['recordValue']
+              if record.is_a?(Hash)
+                initialization_data[data['experienceType'].downcase][record['recordType']] = record['recordValue']
+              else
+                initialization_data[data['experienceType'].downcase][record[0]] = record[1]
+              end
             end
           end
         end
