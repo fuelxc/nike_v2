@@ -34,7 +34,6 @@ module NikeV2
           end
         end
       end
-
       initialization_data
     end
   end
