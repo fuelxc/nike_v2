@@ -42,15 +42,21 @@ module NikeV2
     end
 
     def fetch_more
-      unless self.paging['next'].blank?
+      unless self.paging['next'].nil? || self.paging['next'] == ''
         fetch_and_build_activities 
       end
+      self
     end
 
     def fetch_all
-      until self.paging['next'].blank? do
+      until (self.paging['next'].nil? || self.paging['next'] == '') do
         fetch_and_build_activities 
       end
+      self
+    end
+
+    def paging
+      @paging ||= ''
     end
 
     private

@@ -19,6 +19,12 @@ describe NikeV2::Activities do
       person.activities(:count => 1).length.should == 1
     end
 
+    it 'should fetch_all and return an array of Nike::Activity' do
+      (a = person.activities(:count => 1).fetch_all).should be_kind_of(NikeV2::Activities)
+      a.first.should be_kind_of(NikeV2::Activity)
+      a.length.should == 3
+    end
+
     it 'should accept the start_date parameter, camelcase it and return an array of Nike::Activity' do
       pending
       # person.activities(:count => 1).should be_kind_of(NikeV2::Activities)
