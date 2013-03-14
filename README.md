@@ -49,7 +49,7 @@ person.activities.total_fuel #fetches the metrics if they aren't already loaded
  => 394
 ```
 
-As of version 0.3.0 you can cache calls to the Nike+ V2 api.  We use the ApiCache (https://github.com/mloughran/api_cache) gem for this and all options in cache directive are passed to the api_cache config.  Passing false disables the cache
+As of version 0.3.0 you can cache calls to the Nike+ V2 api.  We use the ApiCache (https://github.com/mloughran/api_cache) gem for this and all options in cache directive are passed to the api_cache config.  Setting config.cache false disables the cache
 ``` ruby
 # config/initializers/nike_v2.rb
 NikeV2.configure do |config|
