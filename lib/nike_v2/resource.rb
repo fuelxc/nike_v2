@@ -19,7 +19,7 @@ module NikeV2
 
     def fetch_data(*args)
       args.unshift(api_url)
-      resp = get(*args).parsed_response
+      resp = get(*args).parsed_response.clone
 
       if !resp['error'].nil? && resp['error'] == RESP_MSG_INVALID_TOKEN
         raise "#{self.class} invalid or expired token, can not fetch data from server."   
