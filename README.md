@@ -49,6 +49,27 @@ person.activities.total_fuel #fetches the metrics if they aren't already loaded
  => 394
 ```
 
+As of version 0.3.0 you can cache calls to the Nike+ V2 api.  We use the ApiCache (https://github.com/mloughran/api_cache) gem for this and all options in cache directive are passed to the api_cache config.  Passing false disables the cache
+``` ruby
+# config/initializers/nike_v2.rb
+NikeV2.configure do |config|
+  config.cache = {
+    :cache => 3600
+  }
+end
+```
+
+Possible options:
+```
+{
+  :cache => 600,    # 10 minutes  After this time fetch new data
+  :valid => 86400,  # 1 day       Maximum time to use old data
+                    #             :forever is a valid option
+  :period => 60,    # 1 minute    Maximum frequency to call API
+  :timeout => 5     # 5 seconds   API response timeout
+  :fail =>          # Value returned instead of exception on failure
+}
+```
 ## Making it Better
  
 * Fork the project.
