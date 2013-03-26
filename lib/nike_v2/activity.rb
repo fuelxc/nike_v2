@@ -44,7 +44,7 @@ module NikeV2
     end
 
     def ended_at
-      @started_at ||= Time.parse(self.end_time.gsub(/Z$/,''))
+      @ended_at ||= Time.parse(self.end_time.gsub(/Z$/,''))
     end
 
     private 
