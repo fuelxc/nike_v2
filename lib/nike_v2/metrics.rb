@@ -23,6 +23,10 @@ module NikeV2
       define_method(method_var_name + '_during'){|*args| sum_of_type_during(type, *args)}
     end
 
+    def duration
+      @metrics_array.collect(&:duration).sort.first
+    end
+
     private
     def build_metrics(data_set)
       data_set.each do |metric|

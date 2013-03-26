@@ -29,6 +29,10 @@ module NikeV2
       @values[time_to_index(start)..time_to_index(stop)]
     end
 
+    def duration
+      @values.length.send(@unit.downcase)
+    end
+
     private
     def time_to_index(time)
       difference = time.to_i - @activity.started_at.to_i

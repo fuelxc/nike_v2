@@ -43,8 +43,9 @@ module NikeV2
       @started_at ||= Time.parse(self.start_time.gsub(/Z$/,''))
     end
 
+    # some reason activities aren't always complete so we need metrics to figure out how long they are
     def ended_at
-      @ended_at ||= Time.parse(self.end_time.gsub(/Z$/,''))
+      @ended_at ||= self.respond_to?(end_time) ? Time.parse(self.end_time.gsub(/Z$/,'')) : started_at + metrics.durations.to.seconds 
     end
 
     private 
