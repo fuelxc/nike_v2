@@ -26,7 +26,7 @@ module NikeV2
     end
 
     def during(start, stop)
-      @values[time_to_index(start)..time_to_index(stop)]
+      @values.slice(time_to_index(start),time_to_index(stop))
     end
 
     def duration

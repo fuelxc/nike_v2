@@ -331,8 +331,40 @@ http_interactions:
         "calories": 581, "fuel": 1653, "distance": 2.0936965942382812, "steps": 2659,
         "duration": "7:02:00.000", "activityType": "ALL_DAY", "startTime": "2013-02-26T07:00:00Z",
         "activityTimeZone": "America/Phoenix", "status": "IN_PROGRESS", "deviceType":
-        "FUELBAND", "tags": [], "metrics": [] } ], "paging": { 
-        } }'
+        "FUELBAND", "tags": [], "metrics": [] } ], "paging": { } }'
     http_version: 
   recorded_at: Thu, 14 Mar 2013 00:45:14 GMT
+- request:
+    method: get
+    uri: https://api.nike.com/me/sport/activities?access_token=foobar&count=1&endDate=2013-03-29&startDate=2013-03-29
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Appid:
+      - nike
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 31 Mar 2013 00:42:39 GMT
+      Server:
+      - Apache
+      X-Swooshlet:
+      - app-msp-api-0 prd sin-165-app-msp-api-0
+      Content-Length:
+      - '472'
+      Connection:
+      - keep-alive
+    body:
+      encoding: US-ASCII
+      string: ! '{"data":[{"activityId":"1b4f5b2c-26c4-45cc-952a-d62c61cf506a","activityType":"ALL_DAY","startTime":"2013-03-30T07:00:00Z","activityTimeZone":"America/Phoenix","status":"NONE","deviceType":"FUELBAND","metricSummary":{"calories":1462,"fuel":4158,"distance":6.641719,"steps":8435,"duration":"8:48:00.000"},"tags":[],"metrics":[]}],"paging":{"next":"/me/sport/activities?count=1&startDate=2013-03-29&endDate=2013-03-29&access_token=foobar&offset=2"}}'
+    http_version: 
+  recorded_at: Sun, 31 Mar 2013 00:42:43 GMT
 recorded_with: VCR 2.4.0
