@@ -18,12 +18,12 @@ describe NikeV2::Metric do
 
     it 'should give an array of values during a time range' do
       metric = activity.metrics.last
-      metric.during(Time.at(activity.started_at.to_i + (60 * 60)), Time.at(activity.started_at.to_i + (60 * 120) - 1)).length.should == 60
+      metric.during(Time.at(activity.started_at.to_i + (60 * 60)), Time.at(activity.started_at.to_i + (60 * 120))).length.should == 60
     end
 
     it 'should total the values during a time range' do
       metric = activity.metrics.last
-      metric.total_during(Time.at(activity.started_at.to_i + (60 * 60)), Time.at(activity.started_at.to_i + (60 * 120))).should == 831
+      metric.total_during(Time.at(activity.started_at.to_i + (60 * 60)), Time.at(activity.started_at.to_i + (60 * 120))).should == 806
     end
   end
 end
