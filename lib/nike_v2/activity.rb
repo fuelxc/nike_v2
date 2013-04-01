@@ -22,6 +22,10 @@ module NikeV2
       super(attributes)
     end
 
+    def tz
+      TZInfo::Timezone.get(self.activity_time_zone)
+    end
+
     def gps_data
       @gps_data ||= NikeV2::GpsData.new(:activity => self)
     end
@@ -40,12 +44,20 @@ module NikeV2
     end
 
     def started_at
-      @started_at ||= Time.parse(self.start_time.gsub(/Z$/,''))
+      @started_at ||= Time.parse(self.start_time.gsub('Z', '-') + '00:00')
     end
 
     # some reason activities aren't always complete so we need metrics to figure out how long they are
     def ended_at
-      @ended_at ||= self.respond_to?(:end_time) ? Time.parse(self.end_time.gsub(/Z$/,'')) : started_at + (metrics.durations.to.seconds).to_f 
+      @ended_at ||= self.respond_to?(:end_time) ? Time.parse(self.end_time.gsub('Z', '-') + '00:00') : started_at + (metrics.durations.to.seconds).to_f 
+    end
+
+    def to_tz(time)
+      if time.respond_to?(:strftime)
+        return Time.parse(time.strftime('%Y-%m-%d %H:%M:%S ' + self.tz.to_s))
+      else
+        return Time.parse(time + ' ' + self.tz.to_s)
+      end
     end
 
     private 

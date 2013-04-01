@@ -1,6 +1,7 @@
 require 'alchemist'
 require 'forwardable'
 require 'ext/core_ext'
+require 'tzinfo'
 
 module NikeV2
   def self.configuration

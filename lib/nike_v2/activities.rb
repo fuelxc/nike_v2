@@ -19,8 +19,8 @@ module NikeV2
         define_method(method_var_name){ ivar = instance_variable_get('@' + method_var_name); ivar ||= sum_of(method_var_name)}
 
 
-        define_method("total_#{type.downcase}_during") do |start_date, end_date|
-          @activities_array.reject{|a| ((a.started_at..a.ended_at) & (start_date..end_date)).nil?}.collect{|a| a.send("total_#{type.downcase}_during", start_date, end_date)}.inject(:+)
+        define_method("total_#{type.downcase}_during") do |start_date, end_date, convert = false|
+          @activities_array.reject{|a| ((a.started_at..a.ended_at) & (start_date..end_date)).nil?}.collect{|a| a.send("total_#{type.downcase}_during", start_date, end_date, convert)}.inject(:+)
         end
       end
     end

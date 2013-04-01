@@ -21,7 +21,11 @@ module NikeV2
       @total ||= values.inject(:+)
     end
 
-    def total_during(start, stop)
+    def total_during(start, stop, convert_to_local = false)
+      if convert_to_local
+        start = @activity.to_tz(start)
+        stop = @activity.to_tz(stop)
+      end
       during(start, stop).collect(&:to_f).inject(:+) rescue 0
     end
 

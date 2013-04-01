@@ -32,8 +32,8 @@ http_interactions:
       encoding: US-ASCII
       string: ! '{ "activityId": "91b501dc-4a38-44aa-b537-6095418713d8", "calories":
         257, "fuel": 662, "distance": 3.1317999362945557, "steps": 10, "duration":
-        "0:14:31.000", "activityType": "RUN", "startTime": "2011-08-11T00:00:00Z",
-        "activityTimeZone": "GMT-08:00", "status": "COMPLETE", "deviceType": "SPORTWATCH",
+        "0:14:31.000", "activityType": "RUN", "startTime": "2011-08-11T07:00:00Z",
+        "activityTimeZone": "America/Phoenix", "status": "COMPLETE", "deviceType": "SPORTWATCH",
         "tags": [ { "tagType": "NOTE", "value": "text string" }, { "tagType": "COURT",
         "value": "DUNK" }, { "tagType": "TERRAIN", "value": "TRAIL" }, { "tagType":
         "EMOTION", "value": "HAPPY" }, { "tagType": "SHOES", "value": "AirMax" },
