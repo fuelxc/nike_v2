@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'httparty', '0.10.2'
   s.add_runtime_dependency "httparty_sober", "0.2.1"
   s.add_runtime_dependency 'alchemist', '0.1.3'
-  s.add_runtime_dependency 'tzinfo', '0.3.36'
+  s.add_runtime_dependency 'tzinfo', '~> 0.3.37'
 
   s.add_development_dependency 'factory_girl', '~> 4.2.0'
   s.add_development_dependency 'rake', '~> 10.0.3'
