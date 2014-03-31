@@ -8,7 +8,8 @@ Gem::Specification.new do |s|
   s.email       = ["eric@rubynooby.com"]
   s.homepage    = 'https://github.com/fuelxc/nike_v2'
   s.summary     = 'Nike+ API V2 Gem'
-  s.description = 'Nike+ API V2 Gem'
+  s.description = 'Provides access to the Nike+ V2 Api'
+  s.license	= 'GPL-3.0'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
