@@ -21,4 +21,21 @@ describe NikeV2::Activity do
       activity.total_fuel_during(Time.parse('2011-08-11T00:00:00-07:00'), Time.parse('2011-08-11T01:00:00-07:00'), true).should == 883.0
     end
   end
+
+  describe 'tags_as_hash' do
+    it "knows how to translate Nike's tag format to a more conventional hash" do
+      VCR.use_cassette 'activity' do
+        activity.load_data
+        conventional_hash = {
+          note: "text string",
+          court: "DUNK",
+          terrain: "TRAIL",
+          emotion: "HAPPY",
+          shoes: "AirMax",
+          weather: "RAINY"
+        }
+        activity.tags_as_hash.should eq(conventional_hash)
+      end
+    end
+  end
 end
