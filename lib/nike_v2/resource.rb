@@ -5,7 +5,7 @@ module NikeV2
     include HTTParty
     include HTTParty::Sober
 
-    base_uri 'https://api.nike.com'
+    base_uri 'https://api.nike.com/v1'
 
     RESP_MSG_INVALID_TOKEN = 'invalid_token'
 
