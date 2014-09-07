@@ -34,10 +34,10 @@ http_interactions:
         257, "fuel": 662, "distance": 3.1317999362945557, "steps": 10, "duration":
         "0:14:31.000", "activityType": "RUN", "startTime": "2011-08-11T07:00:00Z",
         "activityTimeZone": "America/Phoenix", "status": "COMPLETE", "deviceType": "SPORTWATCH",
-        "tags": [ { "tagType": "NOTE", "value": "text string" }, { "tagType": "COURT",
-        "value": "DUNK" }, { "tagType": "TERRAIN", "value": "TRAIL" }, { "tagType":
-        "EMOTION", "value": "HAPPY" }, { "tagType": "SHOES", "value": "AirMax" },
-        { "tagType": "WEATHER", "value": "RAINY" } ], "metrics": [ { "intervalMetric":
+        "tags": [ { "tagType": "NOTE", "tagValue": "text string" }, { "tagType": "COURT",
+        "tagValue": "DUNK" }, { "tagType": "TERRAIN", "tagValue": "TRAIL" }, { "tagType":
+        "EMOTION", "tagValue": "HAPPY" }, { "tagType": "SHOES", "tagValue": "AirMax" },
+        { "tagType": "WEATHER", "tagValue": "RAINY" } ], "metrics": [ { "intervalMetric":
         10, "intervalUnit": "SEC", "metricType": "DISTANCE", "values": [ 0.0299, 0.0562,
         0.0794, 0.114, 3.0967, 3.1296 ] }, { "intervalMetric": 1, "intervalUnit":
         "MIN", "metricType": "FUEL", "values": [ "21", "8", "21", "3", "19", "19",

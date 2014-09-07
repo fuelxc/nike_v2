@@ -8,7 +8,8 @@ Gem::Specification.new do |s|
   s.email       = ["eric@rubynooby.com"]
   s.homepage    = 'https://github.com/fuelxc/nike_v2'
   s.summary     = 'Nike+ API V2 Gem'
-  s.description = 'Nike+ API V2 Gem'
+  s.description = 'Provides access to the Nike+ V2 Api'
+  s.license	= 'GPL-3.0'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
@@ -18,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'httparty', '0.10.2'
   s.add_runtime_dependency "httparty_sober", "0.2.1"
   s.add_runtime_dependency 'alchemist', '0.1.3'
-  s.add_runtime_dependency 'tzinfo', '0.3.36'
+  s.add_runtime_dependency 'tzinfo', '~> 0.3.37'
 
   s.add_development_dependency 'factory_girl', '~> 4.2.0'
   s.add_development_dependency 'rake', '~> 10.0.3'

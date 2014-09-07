@@ -60,6 +60,10 @@ module NikeV2
       end
     end
 
+    def tags_as_hash
+      Hash[tags.map {|k| [k['tagType'].downcase.to_sym, k['tagValue']] }]
+    end
+
     private 
     def api_url
       API_URL + "/#{self.activity_id}"
