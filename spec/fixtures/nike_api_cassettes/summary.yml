@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.nike.com/me/sport?access_token=foobar
+    uri: https://api.nike.com/v1/me/sport?access_token=foobar
     body:
       encoding: US-ASCII
       string: ''

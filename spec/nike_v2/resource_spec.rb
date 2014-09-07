@@ -6,8 +6,8 @@ describe NikeV2::Resource do
   end
 
   describe '#base_uri' do
-    it 'should be set to https://api.nike.com' do
-      NikeV2::Resource.base_uri.should == 'https://api.nike.com'
+    it 'should be set to https://api.nike.com/v1' do
+      NikeV2::Resource.base_uri.should == 'https://api.nike.com/v1'
     end
   end
 end
