@@ -12,7 +12,7 @@ module NikeV2
       end
     end
 
-    API_URL = '/me/sport/activities'
+    API_URL = '/v1/me/sport/activities'
 
     def initialize(attributes = {})
       raise "#{self.class} requires s person." unless attributes.keys.include?(:person)
@@ -38,7 +38,7 @@ module NikeV2
     def load_data
       data = fetch_data
       build_metrics(data)
-      set_attributes(data)   
+      set_attributes(data)
 
       true
     end
