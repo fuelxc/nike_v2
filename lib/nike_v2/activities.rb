@@ -8,8 +8,8 @@ module NikeV2
 
     def_delegators :@activities_array, :[]=, :<<, :[], :count, :length, :each, :first, :last, :collect
     def_delegator :@person, :access_token
-    
-    API_URL = '/me/sport/activities'
+
+    API_URL = '/v1/me/sport/activities'
 
     Metrics::METRIC_TYPES.each do |type|
       self.class_eval do 
